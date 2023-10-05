@@ -17,6 +17,10 @@ public class LevelManager : MonoBehaviour
 
     [NonSerialized] public GameObject pathTiles;
     [NonSerialized] public GameObject towerTiles;
+    [NonSerialized] public PathTile [] pathOrdered;
+    [NonSerialized] public PathTile start;
+    [NonSerialized] private PathTile end;
+
 
     public static LevelManager main;
 
@@ -29,7 +33,7 @@ public class LevelManager : MonoBehaviour
         Vector3 cord;
 
         pathTiles = new("Path Tiles"); // objeto para colocar os caminhos
-
+        int pathIndex = 0;
         for (int x = pathTileMap.origin.x; x < pathTileMap.size.x; x++)
         {
             for (int y = pathTileMap.origin.y; y < pathTileMap.size.y; y++)
@@ -45,8 +49,7 @@ public class LevelManager : MonoBehaviour
                         cord.x += 0.5f;
                         cord.y += 0.5f;
                         pathPrefab.Init(PathTile.types.start);
-                        var start = Instantiate(pathPrefab, cord, Quaternion.identity);
-                        start.transform.parent = pathTiles.transform;
+                        start = Instantiate(pathPrefab, cord, Quaternion.identity);
                         start.name = "start";
                     }
                     else if (tile.name == "colors_pink")
@@ -57,12 +60,13 @@ public class LevelManager : MonoBehaviour
                         cord.x += 0.5f;
                         cord.y += 0.5f;
                         pathPrefab.Init(PathTile.types.end);
-                        var end = Instantiate(pathPrefab, cord, Quaternion.identity);
-                        end.transform.parent = pathTiles.transform;
+                        end = Instantiate(pathPrefab, cord, Quaternion.identity);
                         end.name = "end";
+                        end.transform.parent = pathTiles.transform;
                     }
                     else if (tile.name == "colors_red")
                     {
+
                         // pegando as coordenadas do tile no mundo
                         cord = pathTileMap.CellToWorld(new(x, y, 0));
                         // ajustando para o meio do tile
@@ -71,6 +75,7 @@ public class LevelManager : MonoBehaviour
                         pathPrefab.Init(PathTile.types.path);
                         var pathTile = Instantiate(pathPrefab, cord, Quaternion.identity);
                         pathTile.transform.parent = pathTiles.transform;
+                        pathTile.transform.name = "path " + pathIndex++;
                     } // end if
                 } // end if
             } // end for
@@ -100,25 +105,50 @@ public class LevelManager : MonoBehaviour
                     // adicionando tower tiles
                     towerTilePrefab.Init();
                     var tileObject = Instantiate(towerTilePrefab, cord, Quaternion.identity);
-                    tileObject.transform.parent= towerTiles.transform;
+                    tileObject.transform.parent = towerTiles.transform;
                 } // end if
             } // end for
         } // end for
 
     } // end InitTowerTiles()
 
+    public List<PathTile> GetPath() {
+        List<PathTile> pathTilesList = new(pathTiles.transform.childCount);
+        for (int i = 0; i < pathTiles.transform.childCount; i++)
+        {
+            pathTilesList.Add(pathTiles.transform.GetChild(i).ConvertTo<PathTile>());
+        }
+        return pathTilesList;
+    }
+
+    public PathTile[] GetOrderedPath()
+    {
+        List<PathTile> pathTiles = GetPath();
+        PathTile [] pathTilesOrdered = new PathTile [pathTiles.Count + 1];
+        PathTile p = start;
+        pathTilesOrdered[0] = start;
+
+        int len = pathTiles.Count;
+
+        for (int i = 1; i < len; i++)
+        {
+            p = p.ClosestPathTile(pathTiles);
+            pathTilesOrdered[i] = p;
+            pathTiles.Remove(p);
+        }
+        pathTilesOrdered[len] = end;
+        return pathTilesOrdered;
+    }
+
     // Awake is called before Start
     void Awake()
     {
         LevelManager.main = this;
 
-        // esconder tile maps
-        pathTileMap.enabled = false; 
-        towersTileMap.enabled = false;
         // iniciar tiles a partir do tile map
         InitPathTiles(pathTileMap);
         InitTowerTiles(towersTileMap);
-
+        pathOrdered = GetOrderedPath();
     } // end Start ()
 
     // Start is called before the first frame update
