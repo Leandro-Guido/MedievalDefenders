@@ -38,8 +38,15 @@ public class Pause : MonoBehaviour
         SceneManager.LoadScene(mainMenu);
     }
 
-    public void OpcoesGame(){
-		pause.gameObject.SetActive(false);
-		painelOpcoes.SetActive(true);
+    public void OpcoesGame()
+    {
+        pause.gameObject.SetActive(false);
+        painelOpcoes.SetActive(true);
+    }
+    public void FechaOpcoesGame()
+    {
+        painelOpcoes.SetActive(false);
+        pause.gameObject.SetActive(true);
+  
     }
 }
