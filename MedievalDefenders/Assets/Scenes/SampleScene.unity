@@ -208,7 +208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &334626570
 Transform:
   m_ObjectHideFlags: 0
@@ -1896,6 +1896,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathTileMap: {fileID: 1025471258}
   towersTileMap: {fileID: 334626572}
+  towerTilePrefab: {fileID: -5998764516195733667, guid: d48cfd9fa7d9f48428869ee0d13a03f7, type: 3}
+  pathPrefab: {fileID: 2021491011831108895, guid: 75d9493649f91404d95b84ffc6d66ac2, type: 3}
 --- !u!4 &429791136
 Transform:
   m_ObjectHideFlags: 0
@@ -2630,7 +2632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1025471256
 Transform:
   m_ObjectHideFlags: 0
