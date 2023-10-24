@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] private Transform rotationPoint;
-    [SerializeField] private GameObject range;
+    [SerializeField] private Transform _rotationPoint;
+    [SerializeField] private GameObject _range;
 
     [Header("Atributes")]
     [SerializeField] public float targetingRange = 5f;
@@ -16,16 +16,16 @@ public class Tower : MonoBehaviour
 
     private void Start()
     {
-        range.transform.localScale = new(targetingRange, targetingRange);
-        range.SetActive(false);
+        _range.transform.localScale = new(targetingRange, targetingRange);
+        this.ShowRange();
     }
 
     public void ShowRange() {
-        range.SetActive(true);
+        _range.SetActive(true);
     }
 
     public void HideRange()
     {
-        range.SetActive(false);
+        _range.SetActive(false);
     }
 }
