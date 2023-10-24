@@ -1,60 +1,79 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TowerTile : MonoBehaviour
 {
+    [Header("Attributes")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject highlight;
-    [NonSerialized] public Tower tower = null;
 
-    public Vector3 GetPos() {
-        return transform.position;
-    } // end GetPos()
+    [NonSerialized] private Tower tower = null;
 
-    public void Init ()
+    public Vector3 GetPos()
     {
-        spriteRenderer.color = Color.yellow;
-        spriteRenderer.enabled = false; // para debug usar true
+        return transform.position;
+    }
+
+    public Tower GetTower()
+    {
+        return tower;
+    }
+
+    public void SetTower(Tower tower)
+    {
+        this.tower = tower;
+    }
+
+    public bool HasTower()
+    {
+        return tower != null;
     }
 
     private void OnMouseEnter()
     {
+        if (Pause.main.IsPaused())
+            return;
+        
         highlight.SetActive(true);
-        if(this.tower != null)
+        if (this.HasTower())
         {
             this.tower.ShowRange();
-        } // end if
+        }
     }
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Pause.main.IsPaused())
+            return;
+
+        if (Input.GetMouseButtonDown(0)) // se botao esquerdo
         {
-            if (this.tower == null)
+            if (!this.HasTower())
             {
                 this.tower = BuildManager.main.BuildTower(this);
                 tower.ShowRange();
             }
-        } // end if
-        if (Input.GetMouseButtonDown(1))
+        }
+        if (Input.GetMouseButtonDown(1)) // se botao direito
         {
-            if (this.tower != null)
+            if (this.HasTower())
             {
                 BuildManager.main.RemoveTower(this);
-            } // end if
-        } // end if
+            }
+        }
     }
 
     private void OnMouseExit()
     {
+
         highlight.SetActive(false);
-        if (this.tower != null)
+        if (this.HasTower())
         {
             this.tower.HideRange();
-        } // end if
+        }
     }
 
-} // end class
+
+}
