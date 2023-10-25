@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
 
     [Header("Atributes")]
     [SerializeField] private float _bulletSpeed = 10f;
+    [SerializeField] private int _bulletDamage = 2;
 
     private Transform _target;
 
@@ -20,10 +21,9 @@ public class Projectile : MonoBehaviour
         _rb.velocity = new Vector2(direction.x, direction.y).normalized * _bulletSpeed;
     }
 
-
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        // TODO tirar vida
+        collision.gameObject.GetComponent<Health>().DealDamage(_bulletDamage);
         Destroy(gameObject);
     }
 }
