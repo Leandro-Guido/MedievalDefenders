@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 120abb07219f80c4198ecd2aa8ea8941
+guid: 16e69ccd4d925524f965eede283b3749
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mage_0
+      name: Projectile_mage-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2707385660bd1624283163614294452a
-      internalID: 1697130850
+      spriteID: ec0cbde1f90b4024bb10e4ace394bc8d
+      internalID: -1772506328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage_1
+      name: Projectile_mage-sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,8 +145,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7978a75f0cf94cb408d54e00dd6e64d6
-      internalID: -553361538
+      spriteID: 4480f941dc876714faec97f005fcf1d2
+      internalID: 1173750930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_mage-sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3438a5cf82538f449685ad23a7a64db
+      internalID: -1677464012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_mage-sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc2ab5f647279784ca66bb1e66dd603c
+      internalID: 254617911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_mage-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ff5ed76babe214cb1af35100142af8
+      internalID: -1734959005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_mage-sheet_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5775bf315b5d2f24d975e14a375f87f0
+      internalID: 780884134
       vertices: []
       indices: 
       edges: []
@@ -162,8 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mage_0: 1697130850
-      mage_1: -553361538
+      Projectile_mage-sheet_0: -1772506328
+      Projectile_mage-sheet_1: 1173750930
+      Projectile_mage-sheet_2: -1677464012
+      Projectile_mage-sheet_3: 254617911
+      Projectile_mage-sheet_4: -1734959005
+      Projectile_mage-sheet_5: 780884134
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
