@@ -67,7 +67,10 @@ public class EnemyMovement : MonoBehaviour
 
     }; // Grafo inicial projetado anteriormente
 
-        int[] shortestDistances = Dijkstra(graph, 0,13);
+        //int[] shortestDistances = DFSWithStop(0, 13, graph); // Caminho dos inimigos usando a Busca em Profundidade
+        int[] shortestDistances = Dijkstra(0, 13, graph); // Caminho dos inimigos usando o Dijkstra
+
+
         _vertices = LevelManager.main.GetPath(shortestDistances);
         _target = NextVertice();
         _verticesIndex++;
@@ -109,7 +112,7 @@ public class EnemyMovement : MonoBehaviour
         _rb.velocity = direction * _speed;
     }
 
-    private int[] Dijkstra(int[,] graph, int source, int destination)
+    private int[] Dijkstra( int source, int destination,int[,] graph)
     {
         int V = graph.GetLength(0); // Obtém o número de vértices no grafo.
         int[] dist = new int[V]; // Array para armazenar as distâncias mínimas.
@@ -174,4 +177,51 @@ public class EnemyMovement : MonoBehaviour
         return pathArray;
     }
 
+    public int[] DFSWithStop(int source, int destination, int[,] graph)
+    {
+        int V = graph.GetLength(0); // Obtém o número de vértices do grafo.
+
+        bool[] visited = new bool[V]; // Cria um array para rastrear os nós visitados.
+        List<int> path = new List<int>(); // Cria uma lista para armazenar o caminho percorrido.
+
+        // Chama a função DFSUtil para realizar a busca em profundidade.
+        DFSUtil(source, destination, visited, path, graph);
+
+        int[] resp = new int[V]; // Cria um array de resposta com o tamanho do número de vértices.
+
+        resp = path.ToArray(); // Converte a lista do caminho em um array.
+
+        // Incrementa todos os valores do array de resposta em 1 (uma vez que os índices de vértices começam em 0).
+        for (int i = 0; i < resp.Length; i++)
+        {
+            resp[i] = (resp[i] + 1);
+        }
+
+        return resp; // Retorna o caminho encontrado, com os índices incrementados em 1.
+    }
+
+    private bool DFSUtil(int v, int destination, bool[] visited, List<int> path, int[,] graph)
+    {
+        visited[v] = true; // Marca o nó atual como visitado.
+        path.Add(v); // Adiciona o nó atual ao caminho percorrido.
+
+        if (v == destination)
+        {
+            return true; // Encontramos o destino, então paramos a busca.
+        }
+
+        for (int i = 0; i < graph.GetLength(0); i++)
+        {
+            if (!visited[i] && graph[v, i] != 0)
+            {
+                if (DFSUtil(i, destination, visited, path, graph))
+                {
+                    return true; // Se encontrarmos o destino em qualquer vizinho, paramos a busca.
+                }
+            }
+        }
+
+        path.RemoveAt(path.Count - 1); // Remove o nó atual do caminho se não levar ao destino.
+        return false; // Retorna falso para continuar a busca em outros ramos.
+    }
 }
