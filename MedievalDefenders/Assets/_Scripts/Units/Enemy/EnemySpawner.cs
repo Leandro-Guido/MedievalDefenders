@@ -54,20 +54,17 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    /**
-     * 
-     */
     private void EnemyDestroyed()
     {
         _enemiesAlive--;
     }
 
     /**
-     * spawna um inimigo criando uma instancia na posicao start
+     * spawna um inimigo criando uma instancia no primeiro vertice
      */
     private void SpawnEnemy()
     {
-        Instantiate(prefabEnemies[0], LevelManager.main.start.GetPos(), Quaternion.identity, enemies.transform);
+        Instantiate(prefabEnemies[0], LevelManager.main.vertices[0].transform.position, Quaternion.identity, enemies.transform);
         _enemiesLeftToSpawn--;
         _enemiesAlive++;
         _timeSinceLastSpawn = 0;
