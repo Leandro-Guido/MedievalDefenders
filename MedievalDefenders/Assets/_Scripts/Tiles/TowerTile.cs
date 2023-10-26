@@ -31,22 +31,16 @@ public class TowerTile : MonoBehaviour
         return tower != null;
     }
 
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         if (Pause.main.IsPaused())
             return;
-        
+
         highlight.SetActive(true);
         if (this.HasTower())
         {
             this.tower.ShowRange();
         }
-    }
-
-    private void OnMouseOver()
-    {
-        if (Pause.main.IsPaused())
-            return;
 
         if (Input.GetMouseButtonDown(0)) // se botao esquerdo
         {
@@ -68,7 +62,6 @@ public class TowerTile : MonoBehaviour
 
     private void OnMouseExit()
     {
-
         highlight.SetActive(false);
         if (this.HasTower())
         {

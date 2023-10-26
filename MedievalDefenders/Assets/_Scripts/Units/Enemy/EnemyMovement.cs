@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
 
     private bool HitTarget()
     {
-        return Vector2.Distance(_target.transform.position, transform.position) <= 0.1f;
+        return Vector2.Distance(_target.transform.position, transform.position) <= 0f;
     }
 
     private Transform NextVertice()
@@ -50,6 +51,11 @@ public class EnemyMovement : MonoBehaviour
     private string GetDesitiny(Transform child)
     {
         return child.GetComponent<Path>().destiny;
+    }
+
+    private void Target(Transform newTarget)
+    {
+        _target = newTarget;
     }
 
     // Start is called before the first frame update
@@ -83,7 +89,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         _vertices = LevelManager.main.GetPath(shortestDistances);
-        _target = NextVertice();
+        Target(NextVertice());
         _verticesIndex++;
     }
 
@@ -104,14 +110,14 @@ public class EnemyMovement : MonoBehaviour
             Transform child = LastVisitedVertice().GetChild(_pathIndex);
             if (GetDesitiny(child) == NextVertice().name) // se esse filho faz parte do caminho pro proximo vertice
             {
-                _target = child;
+                Target(child);
             }
             _pathIndex++;
             return;
         }
 
         // se n�o tem mais caminhos entre os vertices para visitar
-        _target = NextVertice();
+        Target(NextVertice());
         _pathIndex = 0;
         _verticesIndex++;
         return;
@@ -119,7 +125,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 direction = (_target.transform.position - transform.position).normalized;
-        _rb.velocity = direction * _speed;
+        transform.position = Vector2.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
     }
 }
