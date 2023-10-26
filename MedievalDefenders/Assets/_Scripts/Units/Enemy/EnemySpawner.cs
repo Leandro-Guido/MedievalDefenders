@@ -64,7 +64,13 @@ public class EnemySpawner : MonoBehaviour
      */
     private void SpawnEnemy()
     {
-        Instantiate(prefabEnemies[0], LevelManager.main.vertices[0].transform.position, Quaternion.identity, enemies.transform);
+        int enemy;
+        if (_currentWave % 2 == 0)
+            enemy = 0;
+        else
+            enemy = 1;
+
+        Instantiate(prefabEnemies[enemy], LevelManager.main.vertices[0].transform.position, Quaternion.identity, enemies.transform);
         _enemiesLeftToSpawn--;
         _enemiesAlive++;
         _timeSinceLastSpawn = 0;
