@@ -4056,8 +4056,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabEnemies:
+  - {fileID: 6504242478139219179, guid: 79eb9f109754df54b90f91c8e89bed5b, type: 3}
   - {fileID: 6504242478139219179, guid: fa2e37487834cdd4db6f37baaabda76a, type: 3}
-  baseEnemies: 1
+  baseEnemies: 3
   enemiesPerSecond: 0.5
   timeBetweenWaves: 0
   difficultyScalingFactor: 0.75
@@ -7899,6 +7900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerPrefabs:
   - {fileID: 6066531654390621819, guid: f6312e120e7f9324986ac4ac4bd9e232, type: 3}
+  - {fileID: 6066531654390621819, guid: f06b88acf3030f64587062443d607a6c, type: 3}
 --- !u!4 &1115480343
 Transform:
   m_ObjectHideFlags: 0
