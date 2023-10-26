@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Tower : MonoBehaviour
 {
@@ -47,8 +44,7 @@ public class Tower : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject projectileObject = Instantiate(_prefabProjectile, _firingPoint.position, Quaternion.identity, _projectiles.transform);
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        Projectile projectile = Instantiate<Projectile>(_prefabProjectile.GetComponent<Projectile>(), _firingPoint.position, Quaternion.identity, _projectiles.transform);
         projectile.SetTarget(_target);
     }
 
@@ -80,7 +76,7 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         _projectiles = GameObject.Find("Projectiles");
-        _range.transform.localScale = new(targetingRange * 2f, targetingRange * 2f);
+        _range.transform.localScale = new(targetingRange, targetingRange);
         this.ShowRange();
     }
 
@@ -91,7 +87,6 @@ public class Tower : MonoBehaviour
 
     public void HideRange()
     {
-        Handles.color = Color.white;
         _range.SetActive(false);
     }
 }
