@@ -116,4 +116,59 @@ public class Graphs : MonoBehaviour
         path.RemoveAt(path.Count - 1); // Remove o nó atual do caminho se não levar ao destino.
         return false; // Retorna falso para continuar a busca em outros ramos.
     }
+
+    static public int[] FindLongestPath(int source, int destination, int[,] graph)
+    {
+        int V = graph.GetLength(0); // Obtém o número de vértices no grafo.
+        bool[] visited = new bool[V]; // Array para rastrear os nós visitados.
+        List<int> path = new List<int>();
+        List<int> longestPath = new List<int>();
+
+        // Função de busca em profundidade para encontrar o MAIOR caminho.
+        void DFS(int current)
+        {
+            visited[current] = true;
+            path.Add(current);
+
+            if (current == destination)
+            {
+                if (path.Count > longestPath.Count)
+                {
+                    longestPath.Clear();
+                    longestPath.AddRange(path);
+                }
+            }
+
+            for (int i = 0; i < V; i++)
+            {
+                if (!visited[i] && graph[current, i] != 0)
+                {
+                    DFS(i);
+                }
+            }
+
+            path.Remove(current);
+            visited[current] = false;
+        }
+
+        // Chama a função DFS para encontrar o MAIOR caminho.
+        DFS(source);
+
+        if (longestPath.Count > 0)
+        {
+            // Transformar os vértices para começar em 1 em vez de 0.
+            for (int i = 0; i < longestPath.Count; i++)
+            {
+                longestPath[i] = longestPath[i] + 1;
+            }
+
+            return longestPath.ToArray();
+        }
+        else
+        {
+            // Não foi encontrado um caminho.
+            return new int[0];
+        }
+    }
+
 }
