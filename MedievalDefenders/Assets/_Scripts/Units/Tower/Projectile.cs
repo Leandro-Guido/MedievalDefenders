@@ -18,12 +18,15 @@ public class Projectile : MonoBehaviour
     {
         _target = target;
         Vector3 direction = _target.position - transform.position;
-        _rb.velocity = new Vector2(direction.x, direction.y).normalized * _bulletSpeed;
+        _rb.velocity = (Vector2)direction.normalized * _bulletSpeed;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.GetComponent<Health>().DealDamage(_bulletDamage);
+        if (collision.gameObject.TryGetComponent<Health>(out var enemyHealth))
+        {
+            enemyHealth.DealDamage(_bulletDamage);
+        }
         Destroy(gameObject);
     }
 }
