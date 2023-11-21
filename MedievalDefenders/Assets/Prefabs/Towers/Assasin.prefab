@@ -191,7 +191,7 @@ SpriteRenderer:
   m_SortingLayerID: -44025399
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1587066098, guid: 9eafd83806df4b34eaf18ac7210ca4ee, type: 3}
+  m_Sprite: {fileID: 1042518264, guid: 5ed0177bb9c79c548a3c122551ec532b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: -6559709508323522871}
   - component: {fileID: 6066531654390621819}
   m_Layer: 0
-  m_Name: Archer
+  m_Name: Assasin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,12 +305,12 @@ MonoBehaviour:
   _rotationPoint: {fileID: 4805131071218305154}
   _range: {fileID: 3753534886823098242}
   _firingPoint: {fileID: 5430993679103064591}
-  _prefabProjectile: {fileID: 6306694656724190766, guid: a24d22b3ede786048981846890fb465d,
+  _prefabProjectile: {fileID: 6306694656724190766, guid: 62e0979e8cdf0094589a6bc020b245c7,
     type: 3}
   _layerMaskEnemies:
     serializedVersion: 2
     m_Bits: 64
-  targetingRange: 7
+  targetingRange: 3
   rotationSpeed: 10000
   bulletsPerSecond: 1
 --- !u!1 &5036081739849655256
@@ -417,7 +417,7 @@ SpriteRenderer:
   m_SortingLayerID: -44025399
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -345228236, guid: 9eafd83806df4b34eaf18ac7210ca4ee, type: 3}
+  m_Sprite: {fileID: 1360909945, guid: 5ed0177bb9c79c548a3c122551ec532b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

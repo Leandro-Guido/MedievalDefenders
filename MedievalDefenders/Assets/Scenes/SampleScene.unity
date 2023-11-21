@@ -8835,6 +8835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerPrefabs:
+  - {fileID: 6066531654390621819, guid: e635affafcd163d42a7318be5add99dd, type: 3}
   - {fileID: 6066531654390621819, guid: f06b88acf3030f64587062443d607a6c, type: 3}
   - {fileID: 6066531654390621819, guid: f6312e120e7f9324986ac4ac4bd9e232, type: 3}
 --- !u!4 &1115480343
