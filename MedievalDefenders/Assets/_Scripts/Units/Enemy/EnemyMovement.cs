@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float _speed = 5f;
+    [SerializeField] private int _damage = 1;
     [SerializeField] private Algorithm _algorithm;
 
     public enum Algorithm
@@ -100,6 +101,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (TargetWasLastVertice()) // chegou no fim do caminho
         {
+            HealthManager.main.TakeDamage(_damage);
             EnemySpawner.onEnemyDestroy.Invoke();
             Destroy(gameObject);
             return;

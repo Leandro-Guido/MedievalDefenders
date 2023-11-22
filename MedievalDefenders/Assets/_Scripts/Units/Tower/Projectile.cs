@@ -28,6 +28,15 @@ public class Projectile : MonoBehaviour
         transform.rotation = RotationTowardsTarget();
     }
 
+    public int GetDamage() {
+        return _bulletDamage;
+    }
+
+    public float GetBulletSpeed()
+    {
+        return _bulletSpeed;
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent<Health>(out var enemyHealth))
@@ -36,4 +45,5 @@ public class Projectile : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
 }

@@ -9,7 +9,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject [] prefabEnemies;
     [SerializeField] private int baseEnemies = 8;
     [SerializeField] private float enemiesPerSecond = 0.5f;
-    [SerializeField] private float timeBetweenWaves = 3f;
     [SerializeField] private float difficultyScalingFactor = 0.75f;
 
     // evento inimigo destruido
@@ -26,18 +25,9 @@ public class EnemySpawner : MonoBehaviour
     private int _enemiesLeftToSpawn;
     private bool _isSpawning = false;
 
-    // DEBUG
-    private bool _debugWave = false;
-
     private void Awake()
     {
         onEnemyDestroy.AddListener(EnemyDestroyed);
-    }
-
-    private void Start()
-    {
-        // comeca a primeira wave
-        StartCoroutine(StartWave());
     }
 
     private void Update()
@@ -84,17 +74,11 @@ public class EnemySpawner : MonoBehaviour
         _isSpawning = false;
         _timeSinceLastSpawn = 0f;
         _currentWave++;
-        StartCoroutine(StartWave());
     }
 
-    /**
-     * coroutine que comeca a wave apos o WaitForSeconds()
-     */
-    private IEnumerator StartWave()
+    public void StartWave()
     {
-        if(_debugWave) 
-            Debug.Log("new wave (" + EnemiesPerWave() + ") incoming in " + timeBetweenWaves + " seconds");
-        yield return new WaitForSeconds(timeBetweenWaves);
+        if (_isSpawning == true) return;
         _isSpawning = true;
         _enemiesLeftToSpawn = EnemiesPerWave();
     }

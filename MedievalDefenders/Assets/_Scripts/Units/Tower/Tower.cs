@@ -12,14 +12,19 @@ public class Tower : MonoBehaviour
     [SerializeField] private LayerMask _layerMaskEnemies;
 
     [Header("Atributes")]
-    [SerializeField] public float targetingRange = 5f;
-    [SerializeField] public float rotationSpeed = 100f;
-    [SerializeField] public float bulletsPerSecond = 1f;
+    public float targetingRange = 5f;
+    public float rotationSpeed = 100f;
+    public float bulletsPerSecond = 1f;
+    public int price = 100;
 
 
     private Transform _target;
     private float _timeUntilFire = 0f;
     private GameObject _projectiles;
+
+    public Projectile GetProjectile() {
+        return _prefabProjectile.GetComponent<Projectile>();
+    }
 
     private void FindTarget()
     {
