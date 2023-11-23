@@ -30,6 +30,12 @@ public class EnemySpawner : MonoBehaviour
         onEnemyDestroy.AddListener(EnemyDestroyed);
     }
 
+    private void Start()
+    {
+        _isSpawning = false;
+        _currentWave = 1;
+    }
+
     private void Update()
     {
         if (!_isSpawning) return;
@@ -81,6 +87,15 @@ public class EnemySpawner : MonoBehaviour
         if (_isSpawning == true) return;
         _isSpawning = true;
         _enemiesLeftToSpawn = EnemiesPerWave();
+    }
+
+    public void DebugVars(string title) {
+        print(title
+        + "\n\t_currentWave: " + _currentWave
+        + "\n\t_timeSinceLastSpawn: " + _timeSinceLastSpawn
+        + "\n\t_enemiesAlive: " + _enemiesAlive
+        + "\n\t_enemiesLeftToSpawn: " + _enemiesLeftToSpawn
+        + "\n\t_isSpawning : " + _isSpawning);
     }
 
     /**

@@ -11,6 +11,7 @@ public class Pause : MonoBehaviour
 
     public GameObject pause;
     [SerializeField] private GameObject painelOpcoes;
+    [SerializeField] private GameObject UI;
     [SerializeField] private string mainMenu;
 
     private void Awake()
@@ -62,12 +63,14 @@ public class Pause : MonoBehaviour
     public void OpcoesGame()
     {
         pause.SetActive(false);
+        UI.SetActive(false);
         painelOpcoes.SetActive(true);
     }
 
     public void FechaOpcoesGame()
     {
         painelOpcoes.SetActive(false);
+        UI.SetActive(true);
         pause.SetActive(true);
     }
 

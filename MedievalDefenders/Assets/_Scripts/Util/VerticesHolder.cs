@@ -10,7 +10,6 @@ public class VerticesHolder : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log("esta rodando");
         foreach (Transform t in lista_vertices)
         {
             lista_heuristica.Add(Vector2.Distance(t.position, lista_vertices[13].position));
