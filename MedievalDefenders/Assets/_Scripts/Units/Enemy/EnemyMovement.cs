@@ -10,7 +10,6 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float _speed = 5f;
-    [SerializeField] private int _damage = 1;
     [SerializeField] private Algorithm _algorithm;
 
     public enum Algorithm
@@ -86,7 +85,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            shortestDistances = Graphs.Dijkstra(0, 13, graph); // Caminho dos inimigos usando o Dijkstra
+            shortestDistances = Graphs.AStar(0, 13, graph); // Caminho dos inimigos usando o A*
         }
 
         _vertices = LevelManager.main.GetPath(shortestDistances);
@@ -101,7 +100,6 @@ public class EnemyMovement : MonoBehaviour
 
         if (TargetWasLastVertice()) // chegou no fim do caminho
         {
-            HealthManager.main.TakeDamage(_damage);
             EnemySpawner.onEnemyDestroy.Invoke();
             Destroy(gameObject);
             return;

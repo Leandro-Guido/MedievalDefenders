@@ -8,23 +8,18 @@ public class Tower : MonoBehaviour
     [SerializeField] private GameObject _range;
     [SerializeField] private Transform _firingPoint;
     [SerializeField] private GameObject _prefabProjectile;
-
+    
     [SerializeField] private LayerMask _layerMaskEnemies;
 
     [Header("Atributes")]
-    public float targetingRange = 5f;
-    public float rotationSpeed = 100f;
-    public float bulletsPerSecond = 1f;
-    public int price = 100;
+    [SerializeField] public float targetingRange = 5f;
+    [SerializeField] public float rotationSpeed = 100f;
+    [SerializeField] public float bulletsPerSecond = 1f;
 
 
     private Transform _target;
     private float _timeUntilFire = 0f;
     private GameObject _projectiles;
-
-    public Projectile GetProjectile() {
-        return _prefabProjectile.GetComponent<Projectile>();
-    }
 
     private void FindTarget()
     {
@@ -38,21 +33,7 @@ public class Tower : MonoBehaviour
     private Quaternion RotationTowardsTarget()
     {
         float angle = Mathf.Atan2(_target.position.y - transform.position.y, _target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
-        float rotacao = 0f;
-
-        if (angle >= -180 && angle < 0) {
-            rotacao = 180f;
-            angle = -(angle + 180f);
-        }
-
-        // angulo do boneco
-        Quaternion currentRotation = gameObject.transform.localRotation;
-        currentRotation.y = rotacao;
-        gameObject.transform.localRotation = currentRotation;
-
-        // angulo da arma
-        Quaternion targetRotation = Quaternion.Euler(new Vector3(rotacao, 0f, angle));
-
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         return Quaternion.RotateTowards(_rotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 

@@ -47,16 +47,14 @@ public class TowerTile : MonoBehaviour
             if (!this.HasTower())
             {
                 this.tower = BuildManager.main.BuildTower(this);
-                if (this.tower != null) { // se construiu
-                    tower.ShowRange();
-                }
+                tower.ShowRange();
             }
         }
         if (Input.GetMouseButtonDown(1)) // se botao direito
         {
             if (this.HasTower())
             {
-                BuildManager.main.SellTower(this);
+                BuildManager.main.RemoveTower(this);
             }
         }
     }

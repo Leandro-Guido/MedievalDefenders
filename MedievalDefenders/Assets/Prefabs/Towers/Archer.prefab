@@ -103,12 +103,12 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1340002249
-  m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingLayerID: -44025399
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
+  m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
   _rotationPoint: {fileID: 4805131071218305154}
   _range: {fileID: 3753534886823098242}
   _firingPoint: {fileID: 5430993679103064591}
-  _prefabProjectile: {fileID: 6306694656724190766, guid: a24d22b3ede786048981846890fb465d,
+  _prefabProjectile: {fileID: 6306694656724190766, guid: 7cadbbfcf7cadc0478a0377277245ad3,
     type: 3}
   _layerMaskEnemies:
     serializedVersion: 2
@@ -313,7 +313,6 @@ MonoBehaviour:
   targetingRange: 7
   rotationSpeed: 10000
   bulletsPerSecond: 1
-  price: 100
 --- !u!1 &5036081739849655256
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +338,7 @@ Transform:
   m_GameObject: {fileID: 5036081739849655256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.078125, y: 0.22587502, z: 0}
+  m_LocalPosition: {x: 0, y: 0.36650002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -417,7 +416,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -44025399
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -345228236, guid: 9eafd83806df4b34eaf18ac7210ca4ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
