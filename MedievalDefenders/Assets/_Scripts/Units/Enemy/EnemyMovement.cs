@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     public enum Algorithm
     {
         LongestPath,
-        dikjstra
+        astar
     }
 
     private Transform _target;
@@ -86,7 +86,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            shortestDistances = Graphs.Dijkstra(0, 13, graph); // Caminho dos inimigos usando o Dijkstra
+            shortestDistances = Graphs.AStar(0, 13, graph); // Caminho dos inimigos usando o AStar
         }
 
         _vertices = LevelManager.main.GetPath(shortestDistances);
