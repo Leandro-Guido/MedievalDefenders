@@ -59,6 +59,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         MakeTowerTiles(_towersTileMap);
         LevelManager.main = this;
     }
