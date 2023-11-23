@@ -1,31 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Graphs : MonoBehaviour
 {
     static public int[] Dijkstra(int source, int destination, int[,] graph)
     {
-        int V = graph.GetLength(0); // Obtém o número de vértices no grafo.
-        int[] dist = new int[V]; // Array para armazenar as distâncias mínimas.
-        int[] parent = new int[V]; // Array para rastrear os pais no caminho mínimo.
-        bool[] visited = new bool[V]; // Array para rastrear os nós visitados.
+        int V = graph.GetLength(0); // Obtï¿½m o nï¿½mero de vï¿½rtices no grafo.
+        int[] dist = new int[V]; // Array para armazenar as distï¿½ncias mï¿½nimas.
+        int[] parent = new int[V]; // Array para rastrear os pais no caminho mï¿½nimo.
+        bool[] visited = new bool[V]; // Array para rastrear os nï¿½s visitados.
 
-        // Inicializa os arrays de distância, pai e visitados.
+        // Inicializa os arrays de distï¿½ncia, pai e visitados.
         for (int i = 0; i < V; i++)
         {
-            dist[i] = int.MaxValue; // Define a distância inicial para infinito.
-            visited[i] = false; // Marca todos os nós como não visitados.
+            dist[i] = int.MaxValue; // Define a distï¿½ncia inicial para infinito.
+            visited[i] = false; // Marca todos os nï¿½s como nï¿½o visitados.
         }
 
-        dist[source] = 0; // A distância do nó de origem para ele mesmo é zero.
-        parent[source] = -1; // Define o pai do nó de origem como -1, indicando que é o nó de início.
+        dist[source] = 0; // A distï¿½ncia do nï¿½ de origem para ele mesmo ï¿½ zero.
+        parent[source] = -1; // Define o pai do nï¿½ de origem como -1, indicando que ï¿½ o nï¿½ de inï¿½cio.
 
         for (int count = 0; count < V - 1; count++)
         {
             int u = -1;
 
-            // Encontra o nó não visitado com a menor distância.
+            // Encontra o nï¿½ nï¿½o visitado com a menor distï¿½ncia.
             for (int i = 0; i < V; i++)
             {
                 if (!visited[i] && (u == -1 || dist[i] < dist[u]))
@@ -34,9 +37,9 @@ public class Graphs : MonoBehaviour
                 }
             }
 
-            visited[u] = true; // Marca o nó u como visitado.
+            visited[u] = true; // Marca o nï¿½ u como visitado.
 
-            // Atualiza as distâncias e os pais dos nós vizinhos.
+            // Atualiza as distï¿½ncias e os pais dos nï¿½s vizinhos.
             for (int v = 0; v < V; v++)
             {
                 if (!visited[v] && graph[u, v] != 0 && dist[u] != int.MaxValue && dist[u] + graph[u, v] < dist[v])
@@ -47,18 +50,18 @@ public class Graphs : MonoBehaviour
             }
         }
 
-        // Cria uma lista para armazenar o caminho mínimo.
+        // Cria uma lista para armazenar o caminho mï¿½nimo.
         List<int> pathList = new List<int>();
         int current = destination;
 
-        // Reconstrói o caminho mínimo a partir do destino até o ponto de origem.
+        // Reconstrï¿½i o caminho mï¿½nimo a partir do destino atï¿½ o ponto de origem.
         while (current != -1)
         {
-            pathList.Insert(0, current); // Insere o nó atual no início da lista.
-            current = parent[current]; // Move para o nó pai no caminho.
+            pathList.Insert(0, current); // Insere o nï¿½ atual no inï¿½cio da lista.
+            current = parent[current]; // Move para o nï¿½ pai no caminho.
         }
 
-        // Converte a lista em um vetor e retorna o caminho mínimo.
+        // Converte a lista em um vetor e retorna o caminho mï¿½nimo.
         int[] pathArray = pathList.ToArray();
 
         for (int i = 0; i < pathArray.Length; i++)
@@ -71,27 +74,27 @@ public class Graphs : MonoBehaviour
 
     static public int[] AStar(int source, int destination, int[,] graph)
     {
-        int V = graph.GetLength(0); // Obtém o número de vértices no grafo.
-        int[] dist = new int[V]; // Array para armazenar as distâncias mínimas.
-        int[] parent = new int[V]; // Array para rastrear os pais no caminho mínimo.
-        bool[] visited = new bool[V]; // Array para rastrear os nós visitados.
-        List<float> heuristicas = SingletonExample.Instance.heuristics; // Array com as heurísticas
+        int V = graph.GetLength(0); // Obtï¿½m o nï¿½mero de vï¿½rtices no grafo.
+        int[] dist = new int[V]; // Array para armazenar as distï¿½ncias mï¿½nimas.
+        int[] parent = new int[V]; // Array para rastrear os pais no caminho mï¿½nimo.
+        bool[] visited = new bool[V]; // Array para rastrear os nï¿½s visitados.
+        List<float> heuristicas = SingletonExample.Instance.heuristics; // Array com as heurï¿½sticas
 
-        // Inicializa os arrays de distância, pai e visitados.
+        // Inicializa os arrays de distï¿½ncia, pai e visitados.
         for (int i = 0; i < V; i++)
         {
-            dist[i] = int.MaxValue; // Define a distância inicial para infinito.
-            visited[i] = false; // Marca todos os nós como não visitados.
+            dist[i] = int.MaxValue; // Define a distï¿½ncia inicial para infinito.
+            visited[i] = false; // Marca todos os nï¿½s como nï¿½o visitados.
         }
 
-        dist[source] = 0; // A distância do nó de origem para ele mesmo é zero.
-        parent[source] = -1; // Define o pai do nó de origem como -1, indicando que é o nó de início.
+        dist[source] = 0; // A distï¿½ncia do nï¿½ de origem para ele mesmo ï¿½ zero.
+        parent[source] = -1; // Define o pai do nï¿½ de origem como -1, indicando que ï¿½ o nï¿½ de inï¿½cio.
 
         for (int count = 0; count < V - 1; count++)
         {
             int u = -1;
 
-            // Encontra o nó não visitado com a menor distância.
+            // Encontra o nï¿½ nï¿½o visitado com a menor distï¿½ncia.
             for (int i = 0; i < V; i++)
             {
                 if (!visited[i] && u == -1)
@@ -107,9 +110,9 @@ public class Graphs : MonoBehaviour
                 }
             }
 
-            visited[u] = true; // Marca o nó u como visitado.
+            visited[u] = true; // Marca o nï¿½ u como visitado.
 
-            // Atualiza as distâncias e os pais dos nós vizinhos.
+            // Atualiza as distï¿½ncias e os pais dos nï¿½s vizinhos.
             for (int v = 0; v < V; v++)
             {
                 if (!visited[v] && graph[u, v] != 0 && dist[u] != int.MaxValue && dist[u] + graph[u, v] < dist[v])
@@ -120,18 +123,18 @@ public class Graphs : MonoBehaviour
             }
         }
 
-        // Cria uma lista para armazenar o caminho mínimo.
+        // Cria uma lista para armazenar o caminho mï¿½nimo.
         List<int> pathList = new List<int>();
         int current = destination;
 
-        // Reconstrói o caminho mínimo a partir do destino até o ponto de origem.
+        // Reconstrï¿½i o caminho mï¿½nimo a partir do destino atï¿½ o ponto de origem.
         while (current != -1)
         {
-            pathList.Insert(0, current); // Insere o nó atual no início da lista.
-            current = parent[current]; // Move para o nó pai no caminho.
+            pathList.Insert(0, current); // Insere o nï¿½ atual no inï¿½cio da lista.
+            current = parent[current]; // Move para o nï¿½ pai no caminho.
         }
 
-        // Converte a lista em um vetor e retorna o caminho mínimo.
+        // Converte a lista em um vetor e retorna o caminho mï¿½nimo.
         int[] pathArray = pathList.ToArray();
 
         for (int i = 0; i < pathArray.Length; i++)
@@ -144,35 +147,35 @@ public class Graphs : MonoBehaviour
 
     static public int[] DFSWithStop(int source, int destination, int[,] graph)
     {
-        int V = graph.GetLength(0); // Obtém o número de vértices do grafo.
+        int V = graph.GetLength(0); // Obtï¿½m o nï¿½mero de vï¿½rtices do grafo.
 
-        bool[] visited = new bool[V]; // Cria um array para rastrear os nós visitados.
+        bool[] visited = new bool[V]; // Cria um array para rastrear os nï¿½s visitados.
         List<int> path = new List<int>(); // Cria uma lista para armazenar o caminho percorrido.
 
-        // Chama a função DFSUtil para realizar a busca em profundidade.
+        // Chama a funï¿½ï¿½o DFSUtil para realizar a busca em profundidade.
         DFSUtil(source, destination, visited, path, graph);
 
-        int[] resp = new int[V]; // Cria um array de resposta com o tamanho do número de vértices.
+        int[] resp = new int[V]; // Cria um array de resposta com o tamanho do nï¿½mero de vï¿½rtices.
 
         resp = path.ToArray(); // Converte a lista do caminho em um array.
 
-        // Incrementa todos os valores do array de resposta em 1 (uma vez que os índices de vértices começam em 0).
+        // Incrementa todos os valores do array de resposta em 1 (uma vez que os ï¿½ndices de vï¿½rtices comeï¿½am em 0).
         for (int i = 0; i < resp.Length; i++)
         {
             resp[i] = (resp[i] + 1);
         }
 
-        return resp; // Retorna o caminho encontrado, com os índices incrementados em 1.
+        return resp; // Retorna o caminho encontrado, com os ï¿½ndices incrementados em 1.
     }
 
     static private bool DFSUtil(int v, int destination, bool[] visited, List<int> path, int[,] graph)
     {
-        visited[v] = true; // Marca o nó atual como visitado.
-        path.Add(v); // Adiciona o nó atual ao caminho percorrido.
+        visited[v] = true; // Marca o nï¿½ atual como visitado.
+        path.Add(v); // Adiciona o nï¿½ atual ao caminho percorrido.
 
         if (v == destination)
         {
-            return true; // Encontramos o destino, então paramos a busca.
+            return true; // Encontramos o destino, entï¿½o paramos a busca.
         }
 
         for (int i = 0; i < graph.GetLength(0); i++)
@@ -186,62 +189,104 @@ public class Graphs : MonoBehaviour
             }
         }
 
-        path.RemoveAt(path.Count - 1); // Remove o nó atual do caminho se não levar ao destino.
+        path.RemoveAt(path.Count - 1); // Remove o nï¿½ atual do caminho se nï¿½o levar ao destino.
         return false; // Retorna falso para continuar a busca em outros ramos.
     }
 
     static public int[] FindLongestPath(int source, int destination, int[,] graph)
+{
+    int V = graph.GetLength(0);
+    int[] inDegree = new int[V];
+    List<int> topologicalOrder = new List<int>();
+    List<int> longestPath = new List<int>();
+
+    void TopologicalSort()
     {
-        int V = graph.GetLength(0); // Obtém o número de vértices no grafo.
-        bool[] visited = new bool[V]; // Array para rastrear os nós visitados.
-        List<int> path = new List<int>();
-        List<int> longestPath = new List<int>();
+        Queue<int> queue = new Queue<int>();
 
-        // Função de busca em profundidade para encontrar o MAIOR caminho.
-        void DFS(int current)
+        for (int i = 0; i < V; i++)
         {
-            visited[current] = true;
-            path.Add(current);
-
-            if (current == destination)
+            for (int j = 0; j < V; j++)
             {
-                if (path.Count > longestPath.Count)
+                if (graph[i, j] != 0)
                 {
-                    longestPath.Clear();
-                    longestPath.AddRange(path);
+                    inDegree[j]++;
                 }
             }
+        }
+
+        for (int i = 0; i < V; i++)
+        {
+            if (inDegree[i] == 0)
+            {
+                queue.Enqueue(i);
+            }
+        }
+
+        while (queue.Count > 0)
+        {
+            int current = queue.Dequeue();
+            topologicalOrder.Add(current);
 
             for (int i = 0; i < V; i++)
             {
-                if (!visited[i] && graph[current, i] != 0)
+                if (graph[current, i] != 0)
                 {
-                    DFS(i);
+                    inDegree[i]--;
+
+                    if (inDegree[i] == 0)
+                    {
+                        queue.Enqueue(i);
+                    }
                 }
             }
-
-            path.Remove(current);
-            visited[current] = false;
-        }
-
-        // Chama a função DFS para encontrar o MAIOR caminho.
-        DFS(source);
-
-        if (longestPath.Count > 0)
-        {
-            // Transformar os vértices para começar em 1 em vez de 0.
-            for (int i = 0; i < longestPath.Count; i++)
-            {
-                longestPath[i] = longestPath[i] + 1;
-            }
-
-            return longestPath.ToArray();
-        }
-        else
-        {
-            // Não foi encontrado um caminho.
-            return new int[0];
         }
     }
+
+    TopologicalSort();
+
+    int[] earliestStart = new int[V];
+    for (int i = 0; i < V; i++)
+    {
+        earliestStart[i] = topologicalOrder.Any() ? earliestStart[topologicalOrder.First()] + 1 : 0;
+        topologicalOrder.RemoveAt(0);
+    }
+
+    int maxDistance = 0;
+    int lastVertex = destination;
+
+    for (int i = V - 1; i >= 0; i--)
+    {
+        if (graph[i, lastVertex] != 0)
+        {
+            maxDistance++;
+            lastVertex = i;
+        }
+    }
+
+    List<int> path = new List<int>();
+    lastVertex = destination;
+
+    for (int i = V - 1; i >= 0; i--)
+    {
+        if (graph[i, lastVertex] != 0)
+        {
+            path.Add(lastVertex);
+            lastVertex = i;
+        }
+    }
+
+    path.Add(source);
+    path.Reverse();
+
+    for (int i = 0; i < path.Count; i++)
+    {
+        path[i] = path[i] + 1;
+    }
+
+   
+
+    return path.ToArray();
+}
 
 }
