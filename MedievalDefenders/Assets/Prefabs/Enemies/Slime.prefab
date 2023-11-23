@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 5325363659481671180}
   _speed: 5
+  _damage: 1
   _algorithm: 1
 --- !u!114 &3296298407732697321
 MonoBehaviour:
