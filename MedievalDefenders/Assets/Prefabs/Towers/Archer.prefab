@@ -310,10 +310,10 @@ MonoBehaviour:
   _layerMaskEnemies:
     serializedVersion: 2
     m_Bits: 64
-  targetingRange: 7
-  rotationSpeed: 10000
-  bulletsPerSecond: 1
-  price: 100
+  targetingRange: 8
+  rotationSpeed: 100000000
+  bulletsPerSecond: 0.25
+  price: 300
 --- !u!1 &5036081739849655256
 GameObject:
   m_ObjectHideFlags: 0

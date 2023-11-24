@@ -11,7 +11,6 @@ public class Pause : MonoBehaviour
 
     public GameObject pause;
     [SerializeField] private GameObject painelOpcoes;
-    [SerializeField] private GameObject UI;
     [SerializeField] private string mainMenu;
 
     private void Awake()
@@ -50,9 +49,14 @@ public class Pause : MonoBehaviour
 
     public void RetornarGame()
     {
-
         pause.SetActive(false);
-        Time.timeScale = 1;
+        if (LevelManager.main.fastFoward == true) {
+            Time.timeScale = LevelManager.main.fastFowardSpeed;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     public void SairGame()
@@ -63,14 +67,12 @@ public class Pause : MonoBehaviour
     public void OpcoesGame()
     {
         pause.SetActive(false);
-        UI.SetActive(false);
         painelOpcoes.SetActive(true);
     }
 
     public void FechaOpcoesGame()
     {
         painelOpcoes.SetActive(false);
-        UI.SetActive(true);
         pause.SetActive(true);
     }
 

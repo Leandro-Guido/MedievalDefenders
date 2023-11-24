@@ -15,6 +15,9 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager main;
 
+    public bool fastFoward = false;
+    public int fastFowardSpeed = 3;
+
     /**
      * retorna um tile com as configuracoes passsadas por parametros
      */
@@ -55,6 +58,18 @@ public class LevelManager : MonoBehaviour
             path[i] = vertices[verticesIndexes[i]-1];
         }
         return path;
+    }
+
+    public void ToggleFastFoward()
+    {
+        if (!fastFoward) // o valor é invertido
+        {
+            Time.timeScale = 3;
+        }
+        else {
+            Time.timeScale = 1;
+        }
+        fastFoward = !fastFoward;
     }
 
     private void Awake()

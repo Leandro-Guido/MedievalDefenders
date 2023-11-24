@@ -8,24 +8,36 @@ public class MenuPrincipalManager : MonoBehaviour
 	[SerializeField] private string nomeDoLevelDeJogo;
 	[SerializeField] private GameObject painelMenuInicial;
 	[SerializeField] private GameObject painelOpcoes;
-	
-	public void Jogar()
+    [SerializeField] private GameObject painelTutorial;
+    [SerializeField] private GameObject painelSobre;
+     
+    private Dictionary<string, GameObject> paineis = new();
+
+    private void Start()
+    {
+        paineis.Add("menu", painelMenuInicial);
+        paineis.Add("opcoes", painelOpcoes);
+        paineis.Add("tutorial", painelTutorial);
+        paineis.Add("sobre", painelSobre);
+    }
+
+    public void Jogar()
 	{
 		SceneManager.LoadScene(nomeDoLevelDeJogo);
 	}
 
-	public void AbrirOpcoes()
-	{
+	private void FecharTudo() {
 		painelMenuInicial.SetActive(false);
-		painelOpcoes.SetActive(true);
-	}
+        painelOpcoes.SetActive(false);
+        painelTutorial.SetActive(false);
+        painelSobre.SetActive(false);
+    }
 
-	public void FecharOpcoes()
-	{
-		painelOpcoes.SetActive(false);
-		painelMenuInicial.SetActive(true);
-	}
-
+    public void AbrirPainel(string nome)
+    {
+        FecharTudo();
+        paineis[nome] .SetActive(true);
+    }
 
 	public void SairJogo()
 	{
