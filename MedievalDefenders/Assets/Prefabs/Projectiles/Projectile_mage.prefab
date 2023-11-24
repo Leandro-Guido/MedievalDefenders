@@ -163,8 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 3650503183051213370}
-  _bulletSpeed: 18
-  _bulletDamage: 2
+  _bulletSpeed: 20
+  _bulletDamageMax: 35
+  _bulletDamageMin: 25
 --- !u!95 &17358264858723135
 Animator:
   serializedVersion: 5

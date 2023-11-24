@@ -10,9 +10,16 @@ public class Projectile : MonoBehaviour
 
     [Header("Atributes")]
     [SerializeField] private float _bulletSpeed = 10f;
-    [SerializeField] private int _bulletDamage = 2;
+    [SerializeField] private int _bulletDamageMax = 2;
+    [SerializeField] private int _bulletDamageMin = 5;
+    private int _bulletDamage;
 
     private Transform _target;
+
+    private void Start()
+    {
+        _bulletDamage = Random.Range(_bulletDamageMin, _bulletDamageMax);
+    }
 
     private Quaternion RotationTowardsTarget()
     {
@@ -28,8 +35,8 @@ public class Projectile : MonoBehaviour
         transform.rotation = RotationTowardsTarget();
     }
 
-    public int GetDamage() {
-        return _bulletDamage;
+    public string GetDamage() {
+        return _bulletDamageMin+"-"+_bulletDamageMax;
     }
 
     public float GetBulletSpeed()

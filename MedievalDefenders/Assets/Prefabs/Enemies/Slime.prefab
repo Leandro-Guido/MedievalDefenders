@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5325363659481671180}
   - component: {fileID: -1750318253429442501}
   - component: {fileID: 8611623840286890159}
+  - component: {fileID: 7001281968370627740}
   m_Layer: 6
   m_Name: Slime
   m_TagString: Untagged
@@ -102,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 5325363659481671180}
-  _speed: 5
+  _speed: 2
   _damage: 1
   _algorithm: 1
 --- !u!114 &3296298407732697321
@@ -117,7 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b34d60a9f11a764caae8d9b768e3ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitPoints: 3
+  _hitPointsMin: 20
+  _hitPointsMax: 30
 --- !u!50 &5325363659481671180
 Rigidbody2D:
   serializedVersion: 4
@@ -201,3 +203,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7001281968370627740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6504242478139219179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3195f985134a8b9479b70a0dcfddb1cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 5

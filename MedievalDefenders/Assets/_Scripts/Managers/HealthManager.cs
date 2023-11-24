@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class HealthManager : MonoBehaviour
     {
         main = this;
         _healthTextField = Instantiate(_healthTextFieldPrefab, _healthCanvas.transform);
-        _healthTextField.name = "money";
+        _healthTextField.name = "health";
         _healthTextField.rectTransform.localPosition = new Vector3(75f, 0f, 0f);
     }
 
@@ -29,6 +30,10 @@ public class HealthManager : MonoBehaviour
     {
         _health -= damage;
         WriteHealth();
+        if (_health <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     private void WriteHealth()

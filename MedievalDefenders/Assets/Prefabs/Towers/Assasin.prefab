@@ -311,9 +311,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetingRange: 3
-  rotationSpeed: 10000
-  bulletsPerSecond: 1
-  price: 200
+  rotationSpeed: 100000000
+  bulletsPerSecond: 2
+  price: 50
 --- !u!1 &5036081739849655256
 GameObject:
   m_ObjectHideFlags: 0

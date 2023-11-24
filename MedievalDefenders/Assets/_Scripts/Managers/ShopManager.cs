@@ -40,6 +40,12 @@ public class ShopManager: MonoBehaviour
         WriteMoney();
     }
 
+    public void EnemyKilled(int price)
+    {
+        _money += price;
+        WriteMoney();
+    }
+
     public bool HaveEnoughMoney (int price) {
         return price <= _money;
     }
